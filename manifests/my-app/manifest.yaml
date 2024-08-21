@@ -1,0 +1,41 @@
+---
+# Source: my-app/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name
+  labels:
+    app: release-name
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: http
+  selector:
+    app: release-name
+---
+# Source: my-app/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name
+  labels:
+    app: release-name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: release-name
+  template:
+    metadata:
+      labels:
+        app: release-name
+    spec:
+      containers:
+      - name: release-name
+        image: "ghcr.io/alexandersolman/my-app:0.0.1"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: ghcr-secret
