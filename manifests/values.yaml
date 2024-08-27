@@ -1,10 +1,4 @@
 appName: my-app
 replicaCount: 1
-image:
-  repository: ghcr.io/alexandersolman/my-app
-  pullPolicy: IfNotPresent
-  tag: "0.0.1"
-
-service:
-  type: ClusterIP
-  port: 80
+port: 80
+namespace: default
