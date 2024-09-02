@@ -29,8 +29,8 @@ func assertType(i interface{}) error {
 }
 
 func main() {
-    num1 := 10
-    num2 := 10
+    num1 := 20
+    num2 := 20
 
     for {
         if err := assertType(num1); err != nil { panic(err) }
